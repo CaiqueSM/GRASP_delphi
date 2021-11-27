@@ -8,9 +8,9 @@ uses
   System.TimeSpan,
   System.SysUtils,
   System.Generics.Collections,
-  untgrafoutils in 'untgrafoutils.pas',
-  untgrasp in 'untgrasp.pas',
-  untgraspmodel in 'untgraspmodel.pas';
+  untgrasp in 'Units\untgrasp.pas',
+  untgrafoutils in 'Utils\untgrafoutils.pas',
+  UntGRASPTypes in 'Types\UntGRASPTypes.pas';
 
 var
   caminho: string;
