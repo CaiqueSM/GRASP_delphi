@@ -160,6 +160,9 @@ begin
   custo := 0;
   for i := 1 to length(ASolucao) - 1 do
     custo := custo + AGrafo[ASolucao[i - 1]][ASolucao[i]];
+
+  custo:= custo + AGrafo[length(ASolucao) - 1][ASolucao[0]];
+
   Result := custo;
 end;
 

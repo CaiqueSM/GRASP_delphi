@@ -24,41 +24,36 @@ var
   Elapsed: TTimeSpan;
 
 begin
-  { TODO -oUser -cConsole Main : Insert code here }
   writeln('Entre com o caminho do arquivo de entrada.');
   readln(caminho);
   LerArquivoParaGrafo(Grafo, caminho);
   tamanho := length(Grafo);
   MelhorCusto := MaxInt;
+  CidadeInicial:= 0;
   randomize;
   Stopwatch := TStopwatch.StartNew;
   try
     try
       { GRASP }
-
-      for i := 0 to tamanho - 1 do
+      for j := 0 to tamanho - 1 do
       begin
-        for j := 0 to tamanho - 1 do
+        CidadeInicial := i;
+        Solucao := AlgoritmoConstrutivo(Grafo, CidadeInicial);
+        Custo := CustoSolucao(Grafo, Solucao);
+        NovaSolucao := BuscaLocal(Grafo, Solucao);
+        novoCusto := CustoSolucao(Grafo, NovaSolucao);
+
+        if novoCusto < Custo then
         begin
-          CidadeInicial := i;
-          Solucao := AlgoritmoConstrutivo(Grafo, CidadeInicial);
-          Custo := CustoSolucao(Grafo, Solucao);
-          NovaSolucao := BuscaLocal(Grafo, Solucao);
-          novoCusto := CustoSolucao(Grafo, NovaSolucao);
-
-          if novoCusto < Custo then
-          begin
-            Solucao := NovaSolucao;
-            Custo := novoCusto;
-          end;
-
-          if Custo <= MelhorCusto then
-          begin
-            MelhorCusto := Custo;
-            MelhorSolucao := Solucao;
-          end;
+          Solucao := NovaSolucao;
+          Custo := novoCusto;
         end;
 
+        if Custo <= MelhorCusto then
+        begin
+          MelhorCusto := Custo;
+          MelhorSolucao := Solucao;
+        end;
       end;
     except
       on E: Exception do
